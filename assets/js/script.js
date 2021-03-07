@@ -55,6 +55,22 @@ async function insertionSort(arr, n) {
     arr[j+1].val = last;
 }
 
+async function selectionSort(arr) {
+    for(let i = 0; i < arr.size; i++){
+        let min = i;
+        
+        for(let j = i+1; j < arr.size; j++) {
+            if(arr[min].val > arr[j].val) { 
+                min = j;
+            }
+        }
+
+        if(min != i) {
+            await arr.swapBar(min, i);
+        }
+    }
+}
+
 function createBars(value, size) {
     let bar = document.createElement('div');
     let val = document.createAttribute("value");
@@ -83,6 +99,7 @@ function truncateArray(){
 
             if(e.target.name == "quicksort") await quicksort(arr, 0, arr.size - 1);
             else if(e.target.name == "insertionsort") await insertionSort(arr, arr.size);
+            else if(e.target.name == "selectionsort") await selectionSort(arr);
             else {console.log(e.target.name);}
         })
     };
