@@ -41,8 +41,9 @@ class ArrayList extends Array {
         this[a].setBarColor("#b3b3b3");
         this[b].setBarColor("#b3b3b3");
     }
-
-	async setPivot(index, color){ // Helper method to set a pivot of desired color, await and then reset to white.
+    
+// Helper method to set a pivot of desired color, await and then reset to white.
+	async setPivot(index, color){ 
 		this[index].setBarColor(color);
 		await sleep(10);
 		//while(paused) await sleep(getSpeed());

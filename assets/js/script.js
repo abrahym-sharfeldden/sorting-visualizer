@@ -75,12 +75,11 @@ function truncateArray(){
 
     // populate array
     arr.populateArray(arrLength);
-
+    
     for(input of sortName) {
         input.addEventListener("click", async (e) => {
             e.preventDefault();
             e.stopPropagation();
-            console.log(arr.size)
 
             if(e.target.name == "quicksort") await quicksort(arr, 0, arr.size - 1);
             else if(e.target.name == "insertionsort") await insertionSort(arr, arr.size);
@@ -89,8 +88,11 @@ function truncateArray(){
     };
 
     arrSubmit.addEventListener("click", e => {
-        e.preventDefault();
+        e.preventDefault();            
+        e.stopPropagation();
+
         const newSize = document.querySelector(`input[type="number"]`).value;
+        
         // removes bar's borders based on array size.
         // refactor with document.innerWidth breakpoints
         if(newSize > 400){
