@@ -91,6 +91,13 @@ function truncateArray(){
     arrSubmit.addEventListener("click", e => {
         e.preventDefault();
         const newSize = document.querySelector(`input[type="number"]`).value;
+        // removes bar's borders based on array size.
+        // refactor with document.innerWidth breakpoints
+        if(newSize > 400){
+            document.querySelectorAll(".array-bar").forEach(bar => {
+                bar.style.border = "none";
+            })
+        }
         truncateArray();
         arr.populateArray(newSize);
     })
