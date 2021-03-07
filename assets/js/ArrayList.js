@@ -14,7 +14,8 @@ class ArrayList extends Array {
     populateArray(size){
         if(!arr.isEmpty()) {
             truncateArray();
-        }
+        }        
+
         let randNum;
     
         for(let i = 0; i < size; ++i) {
@@ -41,7 +42,7 @@ class ArrayList extends Array {
         this[a].setBarColor("#b3b3b3");
         this[b].setBarColor("#b3b3b3");
     }
-    
+
 // Helper method to set a pivot of desired color, await and then reset to white.
 	async setPivot(index, color){ 
 		this[index].setBarColor(color);
