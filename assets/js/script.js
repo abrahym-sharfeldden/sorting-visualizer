@@ -87,9 +87,15 @@ function createBars(value, size) {
     let bar = document.createElement('div');
     let val = document.createAttribute("value");
     val.value = value;
-    bar.className = "array-bar";
-    bar.setAttributeNode(val);
-    // bar.innerHTML = value;
+    bar.className = "array-bar";       
+    
+    // removes bar's borders based on array size.
+    // refactor with document.innerWidth breakpoints
+    if(size > 400){
+        document.querySelectorAll(".array-bar").forEach(bar => {
+            bar.style.border = "none";
+        })
+    }
 
     arrayContainer.appendChild(bar);
     return bar;
@@ -123,14 +129,7 @@ function truncateArray(){
         e.stopPropagation();
 
         const newSize = document.querySelector(`input[type="number"]`).value;
-        
-        // removes bar's borders based on array size.
-        // refactor with document.innerWidth breakpoints
-        if(newSize > 400){
-            document.querySelectorAll(".array-bar").forEach(bar => {
-                bar.style.border = "none";
-            })
-        }
+    
         truncateArray();
         arr.populateArray(newSize);
     })
