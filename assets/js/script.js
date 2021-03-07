@@ -2,7 +2,7 @@ let arrayContainer = document.querySelector(`div.array-container`);
 let arrLength = document.querySelector(`input[type="number"]`).value;
 let arrSubmit = document.querySelector(`input[type="submit"]`);
 let sortName = document.querySelectorAll(`input[type="button"].sort-btn`);
-let time = 100;
+let time = 1000;
 let arr = new ArrayList();
 
 async function sleep(ms) {
@@ -27,7 +27,7 @@ async function partition(arr, left, right) {
 
     for(let i = left; i < right; i++) {
         if(arr[i].val < pivotValue) {
-            await arr.setPivot(pivotIndex, '#a0a0a0');
+            await arr.setPivot(pivotIndex, '#F00');
             arr.swapBar(i, pivotIndex);
             pivotIndex++;
         }
@@ -70,6 +70,18 @@ async function selectionSort(arr) {
         }
     }
 }
+async function bubbleSort(arr) {
+    for(let i = 0; i < arr.length; i++) {
+        for(let j = 0; j < arr.length; j++){
+            // check if j+1 exists; else loop breaks
+            if(arr[j+1]) {
+                sleep(500)
+                if(arr[j+1].val < arr[j].val) 
+                    await arr.swapBar(j, j+1);
+            }
+        }
+    }
+}
 
 function createBars(value, size) {
     let bar = document.createElement('div');
@@ -77,6 +89,7 @@ function createBars(value, size) {
     val.value = value;
     bar.className = "array-bar";
     bar.setAttributeNode(val);
+    // bar.innerHTML = value;
 
     arrayContainer.appendChild(bar);
     return bar;
@@ -99,7 +112,8 @@ function truncateArray(){
 
             if(e.target.name == "quicksort") await quicksort(arr, 0, arr.size - 1);
             else if(e.target.name == "insertionsort") await insertionSort(arr, arr.size);
-            else if(e.target.name == "selectionsort") await selectionSort(arr);
+            else if(e.target.name == "selectionsort") await selectionSort(arr)
+            else if(e.target.name == "bubblesort") await bubbleSort(arr);
             else {console.log(e.target.name);}
         })
     };
