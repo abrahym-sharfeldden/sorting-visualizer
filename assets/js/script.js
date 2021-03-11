@@ -1,12 +1,16 @@
 let arrayContainer = document.querySelector(`div.array-container`);
-let arrLength = document.querySelector(`input[type="number"]`).value;
+// let arrLength = document.querySelector(`input[type="number"]`).value;
 let arrSubmit = document.querySelector(`input[type="submit"]`);
 let sortName = document.querySelectorAll(`input[type="button"].sort-btn`);
-let darkModeBtn = document.querySelector(`input[name="isdark"]`);
+let darkModeBtn = document.querySelector(`input[name="isDarkMode"]`);
 
 let isDarkMode = true;
 let time = 1000;
 let arr = new ArrayList();
+
+let smd = document.querySelector(`input[type="range"]`);
+
+
 
 
 function loadStyleSheet(filetype, filename){
@@ -132,13 +136,14 @@ function truncateArray(){
 (function(){
     // init functions: 
     loadStyleSheet("stylesheet", "style");
-    arr.populateArray(arrLength);
+    arr.populateArray(smd.max/2);
+
     
     for(input of sortName) {
         input.addEventListener("click", async (e) => {
             e.preventDefault();
             e.stopPropagation();
-
+            
             try {
                 if(e.target.name == "quicksort") await quicksort(arr, 0, arr.size - 1);
                 else if(e.target.name == "insertionsort") await insertionSort(arr, arr.size);
@@ -150,20 +155,10 @@ function truncateArray(){
                 throw new Error(e); // ?
             }
             finally {
-                // sorted traveseral function
+                // traverse sorted array
             }
         })
     };
-
-    arrSubmit.addEventListener("click", e => {
-        e.preventDefault();            
-        e.stopPropagation();
-
-        const newSize = document.querySelector(`input[type="number"]`).value;
-    
-        truncateArray();
-        arr.populateArray(newSize);
-    });
 
     darkModeBtn.addEventListener("click", (e) => {
         let sheetName = `style`;
@@ -175,7 +170,10 @@ function truncateArray(){
         loadStyleSheet("stylesheet", sheetName);
     })
 
-    
+    smd.addEventListener("click", e => {
+        truncateArray();
+        arr.populateArray(e.target.value);
+    });
 
     
 })();

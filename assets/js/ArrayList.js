@@ -1,7 +1,7 @@
 class ArrayList extends Array {
     constructor(element) {
         super();
-        this.element = element;
+        this.element = element; 
     }
     get size() {
         return this.length;
@@ -12,7 +12,7 @@ class ArrayList extends Array {
     }
     
     populateArray(size){
-        if(!arr.isEmpty()) {
+        if(!this.isEmpty()) {
             truncateArray();
         }        
 
@@ -23,10 +23,9 @@ class ArrayList extends Array {
             let bar = createBars(randNum , size);
             let height = ((randNum) / (size * 0.01));
             
-            arr[i] = new Node(randNum, bar, size);
+            this[i] = new Node(randNum, bar, size);
         }
     }
-
 
     swapNodes(a, b) {
         [this[a].value, this[b].value] = [this[b].value, this[a].value];
@@ -39,7 +38,7 @@ class ArrayList extends Array {
     
         (isDarkMode) ? this[b].setBarColor("#282828") : this[b].setBarColor('#b3b3b3');
         this.swapNodes(a, b);
-        await sleep(200);
+        await sleep(100);
 
         if(!isDarkMode){
             this[a].setBarColor("#252525");
@@ -55,7 +54,7 @@ class ArrayList extends Array {
 // Helper method to set a pivot of desired color, await and then reset to white.
 	async setPivot(index, color){ 
 		this[index].setBarColor(color);
-		await sleep(200);
+		await sleep(100);
 		//while(paused) await sleep(getSpeed());
 		this[index].setBarColor("white");
 	}
