@@ -2,8 +2,31 @@ let arrayContainer = document.querySelector(`div.array-container`);
 let arrLength = document.querySelector(`input[type="number"]`).value;
 let arrSubmit = document.querySelector(`input[type="submit"]`);
 let sortName = document.querySelectorAll(`input[type="button"].sort-btn`);
+let darkModeBtn = document.querySelector(`input[name="isdark"]`);
+
+let isDarkMode = true;
 let time = 1000;
 let arr = new ArrayList();
+
+
+function loadStyleSheet(filetype, filename){
+    // refactor to prevent the split-second of no css being rendered
+    // between toggles
+    var head = document.querySelector('head');
+
+    let style = document.createElement('link');
+    let rel = document.createAttribute('rel');
+    let href = document.createAttribute('href')
+
+    style.setAttribute(`rel`, filetype);
+    style.setAttribute(`type`, `text/css`); 
+    style.setAttribute(`href`, `./assets/css/${filename}.css`);
+
+    document.querySelector('link[rel="stylesheet"]').remove();
+    head.appendChild(style);
+}
+
+
 
 async function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -107,8 +130,8 @@ function truncateArray(){
 }
 
 (function(){
-
-    // populate array
+    // init functions: 
+    loadStyleSheet("stylesheet", "style");
     arr.populateArray(arrLength);
     
     for(input of sortName) {
@@ -116,11 +139,19 @@ function truncateArray(){
             e.preventDefault();
             e.stopPropagation();
 
-            if(e.target.name == "quicksort") await quicksort(arr, 0, arr.size - 1);
-            else if(e.target.name == "insertionsort") await insertionSort(arr, arr.size);
-            else if(e.target.name == "selectionsort") await selectionSort(arr)
-            else if(e.target.name == "bubblesort") await bubbleSort(arr);
-            else {console.log(e.target.name);}
+            try {
+                if(e.target.name == "quicksort") await quicksort(arr, 0, arr.size - 1);
+                else if(e.target.name == "insertionsort") await insertionSort(arr, arr.size);
+                else if(e.target.name == "selectionsort") await selectionSort(arr)
+                else if(e.target.name == "bubblesort") await bubbleSort(arr);
+                else {console.log(e.target.name);}
+            } 
+            catch (e) {
+                throw new Error(e); // ?
+            }
+            finally {
+                // sorted traveseral function
+            }
         })
     };
 
@@ -132,7 +163,19 @@ function truncateArray(){
     
         truncateArray();
         arr.populateArray(newSize);
+    });
+
+    darkModeBtn.addEventListener("click", (e) => {
+        let sheetName = `style`;
+
+        if(isDarkMode) sheetName += `-light`;
+        
+        isDarkMode = !isDarkMode;
+
+        loadStyleSheet("stylesheet", sheetName);
     })
+
+    
 
     
 })();

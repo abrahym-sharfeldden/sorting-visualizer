@@ -36,11 +36,20 @@ class ArrayList extends Array {
 
     async swapBar(a, b) {
         this[a].setBarColor("#F00");
-        this[b].setBarColor("#282828");
+    
+        (isDarkMode) ? this[b].setBarColor("#282828") : this[b].setBarColor('#b3b3b3');
         this.swapNodes(a, b);
         await sleep(200);
-        this[a].setBarColor("#b3b3b3");
-        this[b].setBarColor("#b3b3b3");
+
+        if(!isDarkMode){
+            this[a].setBarColor("#252525");
+            this[b].setBarColor("#252525");
+        }
+        else {
+            
+            this[a].setBarColor("#b3b3b3");
+            this[b].setBarColor("#b3b3b3");
+        }
     }
 
 // Helper method to set a pivot of desired color, await and then reset to white.
