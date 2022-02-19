@@ -2,7 +2,7 @@ let arrayContainer = document.querySelector(`div.array-container`);
 // let arrLength = document.querySelector(`input[type="number"]`).value;
 let arrSubmit = document.querySelector(`input[type="submit"]`);
 let sortName = document.querySelectorAll(`input[type="button"].sort-btn`);
-let darkModeBtn = document.querySelector(`button#dark-mode-toggle`);
+let darkModeToggle = document.querySelector(`#dark-mode-toggle`);
 
 // let isDarkMode = true;
 let time = 1000;
@@ -109,12 +109,12 @@ function truncateArray() {
 }
 
 const isDarkMode = () =>
-window.matchMedia &&
-window.matchMedia("(prefers-color-scheme: dark)").matches;
+	window.matchMedia &&
+	window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 (function () {
 	// init functions:
-	let darkmode = localStorage.getItem('darkmode') || isDarkMode();
+	let darkmode = localStorage.getItem("darkmode") || isDarkMode();
 
 	arr.populateArray(smd.max / 2);
 
@@ -143,32 +143,27 @@ window.matchMedia("(prefers-color-scheme: dark)").matches;
 	}
 
 	const enableDarkMode = () => {
-		document.body.classList.add('darkmode');
-		localStorage.setItem('darkmode', "enabled");
-	}
-
+		document.body.classList.add("darkmode");
+		localStorage.setItem("darkmode", "enabled");
+	};
 
 	const disableDarkMode = () => {
-		document.body.classList.remove('darkmode');
-		localStorage.setItem('darkmode', null);
-	}
+		document.body.classList.remove("darkmode");
+		localStorage.setItem("darkmode", null);
+	};
 
-	if(darkmode === "enabled") {
+	if (darkmode === "enabled") {
 		enableDarkMode();
 	}
-	// check if dark mode is enabled,
-	// if enabled, turn it off,
-	// else turn it off
-	darkModeBtn.addEventListener("click", () => {
-		darkmode = localStorage.getItem('darkmode');
-		console.log(darkmode)
+	darkModeToggle.addEventListener("click", () => {
+		darkmode = localStorage.getItem("darkmode");
+
 		if (darkmode !== "enabled") {
 			enableDarkMode();
-		}
-		else {
+		} else {
 			disableDarkMode();
 		}
-	})
+	});
 
 	smd.addEventListener("click", e => {
 		truncateArray();

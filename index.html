@@ -12,14 +12,13 @@
 			href="./assets/img/favicon.ico"
 		/>
 
-	<script src="./assets/js/Node.js" defer></script>
-	<script src="./assets/js/ArrayList.js" defer></script>
-	<script src="./assets/js/script.js" defer></script>
+		<script src="./assets/js/Node.js" defer></script>
+		<script src="./assets/js/ArrayList.js" defer></script>
+		<script src="./assets/js/script.js" defer></script>
 	</head>
 	<body>
 		<header>
 			<section class="header-section array-controls">
-				<label for="arraySize">Array Size:</label>
 				<input
 					type="range"
 					name="arraySize"
@@ -65,13 +64,14 @@
 				</ul>
 			</section>
 			<section class="header-section dark-mode-button">
-				<button
+				<input
+					type="checkbox"
+					name="dark-mode-toggle"
 					id="dark-mode-toggle"
 					class="dark-mode-toggle"
 					aria-label="toggle dark mode"
-				>
-					Insert Icon
-				</button>
+				/>
+				<label for="dark-mode-toggle" class="label-1"></label>
 			</section>
 		</header>
 
