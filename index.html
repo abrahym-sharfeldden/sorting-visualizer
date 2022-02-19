@@ -11,71 +11,72 @@
 			type="image/jpg"
 			href="./assets/img/favicon.ico"
 		/>
+
+	<script src="./assets/js/Node.js" defer></script>
+	<script src="./assets/js/ArrayList.js" defer></script>
+	<script src="./assets/js/script.js" defer></script>
 	</head>
 	<body>
 		<header>
-			<ul>
-				<!-- <li>Logo/Name</li> -->
-				<li>
-					<label for="arraySize">Array Size:</label>
-					<input
-						type="range"
-						name="arraySize"
-						min="15"
-						max="500"
-						step="5"
-					/>
-					<!-- <input type="number" value="500"/> -->
-					<!-- <input type="submit" id="arrLength" value="generate new array"> -->
-				</li>
-
-				<!-- Add this as a dropdown list of types of sorts -->
-				<li>
-					<label for="sort_name">Select a sort:</label>
-					<input
-						type="button"
-						class="sort-btn"
-						value="Quick Sort"
-						name="quicksort"
-					/>
-					<input
-						type="button"
-						class="sort-btn"
-						value="Insertion Sort"
-						name="insertionsort"
-					/>
-					<input
-						type="button"
-						class="sort-btn"
-						value="Selection Sort"
-						name="selectionsort"
-					/>
-					<input
-						type="button"
-						class="sort-btn"
-						value="Bubble Sort"
-						name="bubblesort"
-					/>
-				</li>
-				<!-- <li>
-            <label for="submit"></label>
-            <input type="submit" value="Go" />
-        </li> -->
-				<li>
-					<input
-						type="button"
-						name="isDarkMode"
-						value="Set Light Mode"
-					/>
-				</li>
-			</ul>
+			<section class="header-section array-controls">
+				<label for="arraySize">Array Size:</label>
+				<input
+					type="range"
+					name="arraySize"
+					min="15"
+					max="500"
+					step="5"
+				/>
+			</section>
+			<section class="header-section sorting-container">
+				<ul>
+					<li>
+						<input
+							type="button"
+							class="sort-btn"
+							value="Quick Sort"
+							name="quicksort"
+						/>
+					</li>
+					<li>
+						<input
+							type="button"
+							class="sort-btn"
+							value="Insertion Sort"
+							name="insertionsort"
+						/>
+					</li>
+					<li>
+						<input
+							type="button"
+							class="sort-btn"
+							value="Selection Sort"
+							name="selectionsort"
+						/>
+					</li>
+					<li>
+						<input
+							type="button"
+							class="sort-btn"
+							value="Bubble Sort"
+							name="bubblesort"
+						/>
+					</li>
+				</ul>
+			</section>
+			<section class="header-section dark-mode-button">
+				<button
+					id="dark-mode-toggle"
+					class="dark-mode-toggle"
+					aria-label="toggle dark mode"
+				>
+					Insert Icon
+				</button>
+			</section>
 		</header>
+
 		<div class="container">
 			<div class="array-container" id="array-container"></div>
 		</div>
 	</body>
-
-	<script src="./assets/js/Node.js"></script>
-	<script src="./assets/js/ArrayList.js"></script>
-	<script src="./assets/js/script.js"></script>
 </html>
